@@ -1,0 +1,8 @@
+select * from 
+teachers join courses on courses.teachers_id = teachers.id
+where (courses.name,teachers.salary) in (
+   select courses.name, max(teachers.salary)
+  from courses join teachers on courses.teachers_id = teachers.id
+  group by courses.name
+  )
+  order by courses.name asc
